@@ -8,11 +8,11 @@ root = tkinter.Tk()
 
 class App:
     
+    frame = Frame(root, width=100, height=100)
+    frame.pack()
 
     def __init__(self, master):
 
-        frame = Frame(master)
-        frame.pack()
         self.message = Label(frame, text='Recording not in session.')
         self.message.pack()
         self.record_button = Button(frame, text="Start Recording", command=self.stopRecording)
@@ -29,6 +29,9 @@ class App:
     def startRecording(self):
         self.record_button.config(text="Start Recording", command=self.stopRecording)
         self.message.config(text='Recording not in session.')
+
+        # messagebox.showinfo("Recording in Session","Recording is in session")
+
 
 app = App(root)
 
