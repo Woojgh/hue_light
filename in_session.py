@@ -13,7 +13,8 @@ class App:
 
         frame = Frame(master)
         frame.pack()
-        self.message = Label(frame, text='Recording not in session')
+        self.message = Label(frame, text='Recording not in session.')
+        self.message.pack()
         self.record_button = Button(frame, text="Start Recording", command=self.stopRecording)
         self.record_button.pack(side=RIGHT)
 
@@ -24,9 +25,11 @@ class App:
 
     def stopRecording(self):
         self.record_button.config(text="Stop Recording", command=self.startRecording)
-        
+        self.message.config(text='Recording is now in session. Please remain quiet.')
     def startRecording(self):
         self.record_button.config(text="Start Recording", command=self.stopRecording)
+        self.message.config(text='Recording not in session.')
+
 app = App(root)
 
 root.mainloop()
