@@ -8,41 +8,30 @@ root = tkinter.Tk()
 
 class App:
     
+    frame = Frame(root, width=100, height=100)
+    frame.pack()
 
     def __init__(self, master):
 
-        frame = Frame(master)
-        frame.pack()
-
-        self.a = Button(frame, text="Record", command=self.Recording)
-        self.a.pack(side=RIGHT)
+        self.message = Label(frame, text='Recording not in session.')
+        self.message.pack()
+        self.record_button = Button(frame, text="Start Recording", command=self.stopRecording)
+        self.record_button.pack(side=RIGHT)
 
         self.button = Button(
             frame, text="QUIT", fg="red", command=frame.quit
             )
         self.button.pack(side=LEFT)
 
-        self.hi_there = Button(frame, text="Hello", command=self.say_hi)
-        self.hi_there.pack(side=LEFT)
+    def stopRecording(self):
+        self.record_button.config(text="Stop Recording", command=self.startRecording)
+        self.message.config(text='Recording is now in session. Please remain quiet.')
+    def startRecording(self):
+        self.record_button.config(text="Start Recording", command=self.stopRecording)
+        self.message.config(text='Recording not in session.')
 
+        # messagebox.showinfo("Recording in Session","Recording is in session")
 
-    def say_hi(self):
-        print ("hi there, everyone!")
-
-
-    def Recording(self):
-        messagebox.showinfo("Recording in Session","Recording is in session")
-        # b = Button(master, text="OK", command=self.)
-        # b.pack()
-
-        # c = Button(master, text="OK", command=self.)
-        # c.pack()
-
-        # d = Button(master, text="OK", command=self.)
-        # d.pack()
-
-# w = Message(root, text="this is a message")
-# w.pack()
 
 app = App(root)
 
