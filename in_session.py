@@ -1,66 +1,50 @@
 #!/usr/bin/python
-import tkinter
+
+import tkinter as tk
 from tkinter import *
 from phue import Bridge
 
-root = tkinter.Tk()
-
-#phue = Bridge('ip_of_your_bridge')
+root = tk.Tk()
+root.geometry('200x200')
+# phue = Bridge('')
 class App:
     
-
     def __init__(self, master):
-        frame = Frame(root)
-        frame.pack()
+        frame = tk.Frame(root)
+        frame.pack(fill=BOTH, expand=True)
+
+        bottom_buttons = tk.Frame(root, background="bisque")
+        bottom_buttons.pack()
 
         self.message = Label(frame, text='Recording not in session.', bg='gray', fg='black')
-        self.message.pack()
+        self.message.pack(fill=BOTH, expand=True)
         
-        self.quit_button = Button(frame, text="QUIT", fg="red", command=frame.quit)
+        self.quit_button = Button(bottom_buttons, text="QUIT", fg="red", command=frame.quit)
         self.quit_button.pack(side=LEFT)
         
-        self.record_button = Button(frame, text="Start Recording", command=self.stopRecording)
+        self.record_button = Button(bottom_buttons, text="Start Recording", command=self.stopRecording)
         self.record_button.pack(side=LEFT)
 
     def stopRecording(self):
-        #phue.set_light(1, 'on', True)
+        # phue.set_light(1, 'on', True)
         self.record_button.config(text="Stop Recording", command=self.startRecording)
-        self.message.config(text='Recording is now in session. Please remain quiet.', bg='red', fg='white')
+        self.message.config(text='Recording is now in session. Please remain quiet.', wraplength=180, justify=CENTER, bg='red', fg='white')
     def startRecording(self):
-        #phue.set_light(1, 'on', False)
+        # phue.set_light(1, 'on', False)
         self.record_button.config(text="Start Recording", command=self.stopRecording)
         self.message.config(text='Recording not in session.', bg='gray', fg='black')
 
-        # messagebox.showinfo("Recording in Session","Recording is in session")
+# def sel(data):
+#         phue.set_light([1,2,3],{'bri':int(data), 'transitiontime': 1})
 
 
 app = App(root)
-
-horizontal_frame = Frame(root)
-horizontal_frame.pack()
-
-lights = b.get_light_objects('id')
-
-for light_id in lights:
-    channel_frame = Frame(horizontal_frame)
-    channel_frame.pack(side = LEFT)
-
-    scale_command = lambda x, light_id=light_id: b.set_light(light_id,{'bri': int(x), 'transitiontime': 1})
-    scale = Scale(channel_frame, from_ = 254, to = 0, command = scale_command, length = 200, showvalue = 0)
-    scale.set(b.get_light(light_id,'bri'))
-    scale.pack()
-
-    button_var = BooleanVar()
-    button_var.set(b.get_light(light_id, 'on'))
-    button_command = lambda button_var=button_var, light_id=light_id: b.set_light(light_id, 'on', button_var.get())
-    button = Checkbutton(channel_frame, variable = button_var, command = button_command)
-    button.pack()
-
-    label = Label(channel_frame)
-    label.config(text = b.get_light(light_id,'name'))
-    label.pack()
+# scale = Scale(root, from_=254, to=0, command=sel, length=200)
+# scale.set(phue.get_light(1,'bri'))
+# scale.pack(anchor=CENTER)
 
 root.mainloop()
+
 
 
 
