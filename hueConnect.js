@@ -1,12 +1,21 @@
 'use strict';
 
-var hue = require('node-hue-api');
+var request = new XMLHttpRequest();
+var bridge = '#';
+var auth = '#';
 
-var displayBridges = function (bridge) {
-    console.log('Hue Bridges Found: ' + JSON.stringify(bridge));
-};
-hue.nupnpSearch().then(displayBridges).done();
-hue.nupnpSearch(function (err, result) {
-    if (err) throw err;
-	displayBridges(result);
-});
+function onState(light, state) {
+  request.open('PUT', "http://" + bridge + /api/ + auth + "/lights/" + light + "/state", true);
+  request.send('{"on":' + state + '}');
+}
+
+function offState(light, state) {
+  request.open('PUT', "http://" + bridge + /api/ + auth + "/lights/" + light + "/state", true);
+  request.send('{"off":' + state + '}');
+}
+
+function getBridges() {
+	request.open('GET',"https://www.meethue.com/api/nupnp", true);
+  bridge = request.responseText;
+	console.log(request.responseText);
+}
