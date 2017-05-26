@@ -5,16 +5,18 @@ document.getElementById('recording-status');
 $('#start-recording-button').click(function () {
     $('#start-recording-button').toggleClass('display-none');
     $('#stop-recording-button').toggleClass('display-none');
-    document.body.style.backgroundColor = 'red';
-    document.getElementById('recording-status').innerHTML = "Recording is in Session!";
+    document.getElementById('recording-container').style.background = 'red';
+    document.getElementById('recording-status').innerHTML = "Recording in Session!";
+    document.getElementById('recording-status').style.color = "white";
+
 });
 $('#stop-recording-button').click(function () {
     $('#start-recording-button').toggleClass('display-none');
     $('#stop-recording-button').toggleClass('display-none');
-    document.body.style.backgroundColor = 'white';
+    document.getElementById('recording-container').style.background = 'white';
     document.getElementById('recording-status').innerHTML = "Recording not in Session";
+    document.getElementById('recording-status').style.color = "black";
 });
-
 
 
 

@@ -5,3 +5,11 @@
 .display-none {
 	display: none;
 }
+#recording-container {
+	background-color: white;
+	border:5px dashed black;
+	border-radius: 5px;
+	height:10vw;
+	text-align: center;
+	width: 20vw;
+}
