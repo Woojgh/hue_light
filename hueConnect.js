@@ -10,7 +10,6 @@ hueLight.bridge = '192.168.1.135';
 hueLight.username = 'EC9u1ZUDvc0EPEvNxW1rHFaukQ12pJGHUC5RgsPg';
 
 function startSession() {
-    console.log('I started recording');
     hueLight.light(1).on();
     hueLight.light(1).setState(blue);
 }
