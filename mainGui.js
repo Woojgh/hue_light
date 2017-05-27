@@ -1,15 +1,26 @@
 'use strict';
-document.getElementById('start-recording-button');
-document.getElementById('stop-recording-button');
-document.getElementById('recording-status');
+
+
+$('#start-session-button').click(function () {
+    $('#start-session-button').toggleClass('display-none');
+    $('#end-session-button').toggleClass('display-none');
+    document.getElementById('recording-container').style.borderColor = 'blue';
+    startSession();
+});
+$('#end-session-button').click(function () {
+    $('#start-session-button').toggleClass('display-none');
+    $('#end-session-button').toggleClass('display-none');
+    document.getElementById('recording-container').style.borderColor = 'black';
+
+})
 $('#start-recording-button').click(function () {
     $('#start-recording-button').toggleClass('display-none');
     $('#stop-recording-button').toggleClass('display-none');
     document.getElementById('recording-container').style.background = 'red';
     document.getElementById('recording-status').innerHTML = "Recording in Session!";
     document.getElementById('recording-status').style.color = "white";
-
 });
+
 $('#stop-recording-button').click(function () {
     $('#start-recording-button').toggleClass('display-none');
     $('#stop-recording-button').toggleClass('display-none');
