@@ -1,0 +1,27 @@
+{
+  "name": "philips-hue-api",
+  "version": "1.0.0",
+  "description": "hue api",
+  "main": "hueConnect.js",
+  "dependencies": {
+    "appjs": "^0.0.20",
+    "appjs-darwin": "^0.0.19",
+    "jshue": "^2.0.0",
+    "nodewebkit": "^0.11.6",
+    "webkit": "^0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdiehlio/hue_light.git"
+  },
+  "author": "Zach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zdiehlio/hue_light/issues"
+  },
+  "homepage": "https://github.com/zdiehlio/hue_light#readme"
+}

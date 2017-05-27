@@ -1,21 +1,33 @@
 'use strict';
 
-var request = new XMLHttpRequest();
-var bridge = '#';
-var auth = '#';
+var Hue = require('philips-hue');
+var hue = new Hue();
+var green = {bri:254, sat:254, hue:25500};
+var red = {bri:254, sat: 254, hue: 0};
+var blue = {bri: 254, sat: 254, hue: 46920};
 
-function onState(light, state) {
-  request.open('PUT', "http://" + bridge + /api/ + auth + "/lights/" + light + "/state", true);
-  request.send('{"on":' + state + '}');
+hue.bridge = '192.168.1.135';
+hue.username = 'EC9u1ZUDvc0EPEvNxW1rHFaukQ12pJGHUC5RgsPg';
+
+function startSession() {
+  hue.light(1).on();
+  hue.light(1).setState(blue);
+}
+function startRecord() {
+  hue.light(1).on();
+  hue.light(1).setState(red);
+  // hue.light(2).on();
+}
+function stopRecord() {
+  hue.light(1).setState(green);
 }
 
-function offState(light, state) {
-  request.open('PUT', "http://" + bridge + /api/ + auth + "/lights/" + light + "/state", true);
-  request.send('{"off":' + state + '}');
+function endSession() {
+  hue.light(1).off();
+  // hue.light(2).off;
 }
 
-function getBridges() {
-	request.open('GET',"https://www.meethue.com/api/nupnp", true);
-  bridge = request.responseText;
-	console.log(request.responseText);
-}
+startSession();
+startRecord();
+stopRecord();
+endSession();
