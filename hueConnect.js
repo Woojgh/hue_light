@@ -1,33 +1,38 @@
 'use strict';
 
 var Hue = require('philips-hue');
-var hueLight = new Hue();
-var green = {bri: 254, sat: 254, hue: 25500};
-var red = {bri: 254, sat: 254, hue: 0};
+var hue = new Hue();
+var http = require('http');
+var green = {bri:254, sat:254, hue:25500};
+var red = {bri:254, sat: 254, hue: 0};
 var blue = {bri: 254, sat: 254, hue: 46920};
 
-hueLight.bridge = '192.168.1.135';
-hueLight.username = 'EC9u1ZUDvc0EPEvNxW1rHFaukQ12pJGHUC5RgsPg';
+hue.bridge = '10.0.0.65';
+hue.username = 'kGjnsXa61BlsHGvJu4oYzNdeDyZAo-urVT2TK6xo';
+
+http.createServer(function(request, response){
+  response.write(req.url);
+}).listen(8080);
 
 function startSession() {
-    hueLight.light(1).on();
-    hueLight.light(1).setState(blue);
+  hue.light(1).on();
+  hue.light(1).setState(blue);
 }
 function startRecord() {
-    hueLight.light(1).on();
-    hueLight.light(1).setState(red);
-  // hueLight.light(2).on();
+  hue.light(1).on();
+  hue.light(1).setState(red);
+  // hue.light(2).on();
 }
 function stopRecord() {
-    hueLight.light(1).setState(green);
+  hue.light(1).setState(green);
 }
 
 function endSession() {
-    hueLight.light(1).off();
-  // hueLight.light(2).off;
+  hue.light(1).off();
+  // hue.light(2).off;
 }
 
-startSession();
-startRecord();
-stopRecord();
-endSession();
+// startSession();
+// startRecord();
+// stopRecord();
+// endSession();

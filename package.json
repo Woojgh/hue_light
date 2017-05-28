@@ -2,7 +2,7 @@
   "name": "philips-hue-api",
   "version": "1.0.0",
   "description": "hue api",
-  "main": "hueConnect.js",
+  "main": "hyperdeck.js",
   "dependencies": {
     "appjs": "^0.0.20",
     "appjs-darwin": "^0.0.19",
