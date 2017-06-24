@@ -63,23 +63,28 @@ hue.getBridges()
 app.get('/startSession', (req, res) => {
   hue.light(1).on();
   hue.light(1).setState(blue);
+  hue.light(2).on();
+  hue.light(2).setState(blue);
 });
 
 app.get('/startRecord', (req, res) => {
   hue.light(1).on();
   hue.light(1).setState(red);
-  // hue.light(2).on();
+  hue.light(2).on();
+  hue.light(2).setState(red);
   hyperdeck.record();
 });
 app.get('/stopRecord', (req, res) => {
   hue.light(1).on();
   hue.light(1).setState(green);
+  hue.light(2).on();
+  hue.light(2).setState(green);
   hyperdeck.stop();
 });
 
 app.get('/endSession', (req, res) => {
   hue.light(1).off();
-  // hue.light(2).off;
+  hue.light(2).off;
 });
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));
